@@ -17,7 +17,6 @@ const Usuarios = sequelize.define(
     email: {
       type: DataTypes.STRING(200),
       allowNull: false,
-      unique: true,
     },
     senha: {
       type: DataTypes.STRING(500),
@@ -31,6 +30,15 @@ const Usuarios = sequelize.define(
   },
   {
     // Docs: https://sequelize.org/docs/v6/core-concepts/model-basics
+
+    // cria index único para impedir que e-mails duplicados sejam cadastrados
+    indexes: [
+      {
+        name: 'usuario_email_unico',
+        unique: true,
+        fields: ['email'],
+      },
+    ],
 
     // renomeia as colunas timestamps padrões do sequelize
     createdAt: 'criado_em',

@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../database/sequelize');
+const Usuarios = require('./Usuarios');
 
 const Tarefas = sequelize.define(
   'tarefas',
@@ -17,6 +18,10 @@ const Tarefas = sequelize.define(
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
+    },
+    usuario_id: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
     },
   },
   {
@@ -36,5 +41,26 @@ const Tarefas = sequelize.define(
     ],
   },
 );
+
+/**
+ * Configura a relação entre usuários e tarefas, onde uma tarefa "pertence à" um
+ * usuário.
+ *
+ * Deste modo será criada uma chave estrangeira "usuarios_id" na tabela "tarefas".
+ *
+ * Docs: https://sequelize.org/docs/v6/core-concepts/assocs/
+ */
+Tarefas.belongsTo(Usuarios, {
+  // tabela associada
+  as: 'usuario',
+  // chave primária da tabela associada
+  targetKey: 'id',
+  // chave estrangeira
+  foreignKey: 'usuario_id',
+  // Configura o que deve ser feito quando uma tarefa ou usuário for excluído.
+  // Docs: https://sequelize.org/docs/v6/core-concepts/assocs/#ondelete-and-onupdate
+  onDelete: 'NO ACTION',
+  onUpdate: 'NO ACTION',
+});
 
 module.exports = Tarefas;

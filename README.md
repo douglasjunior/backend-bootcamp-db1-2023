@@ -47,7 +47,7 @@
 
 Todas as rotas autenticadas exigem que o `token jwt` seja passado no cabeçalho (header) chamado `Authorization`.
 
-EM BREVE ....
+EM BREVE ...
 
 -----
 

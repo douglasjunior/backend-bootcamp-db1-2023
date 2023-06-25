@@ -3,7 +3,9 @@ const express = require('express');
 const { middlewareAutenticacao } = require('../middlewares/autenticacao');
 const Tarefas = require('../models/Tarefas');
 const { checarResultadoValidacao } = require('../validators');
-const { validadorCadastroTarefa } = require('../validators/tarefas');
+const {
+  validadorCadastroTarefa, validadorAtualizacaoTarefa,
+} = require('../validators/tarefas');
 
 const router = express.Router();
 
@@ -185,6 +187,65 @@ router.put(
       }
 
       res.status(200).json(result);
+    } catch (error) {
+      console.warn(error);
+      res.status(500).send();
+    }
+  },
+);
+
+/**
+ * Atualiza os dados da tarefa do usuário de forma parcial
+ */
+router.patch(
+  '/:tarefaId',
+  middlewareAutenticacao,
+  validadorAtualizacaoTarefa,
+  async (req, res) => {
+    if (checarResultadoValidacao(req, res)) {
+      return;
+    }
+
+    try {
+      const { usuarioLogado, params, body } = req;
+
+      const { tarefaId } = params;
+      const { titulo, concluida } = body;
+
+      const tarefa = await Tarefas.findOne({
+        where: {
+          id: tarefaId,
+          usuario_id: usuarioLogado.id,
+        },
+      });
+
+      if (!tarefa) {
+        res.status(404).send('Tarefa não encontrada');
+        return;
+      }
+
+      /**
+       * Realiza o update da tarefa direto no banco de dados e não via "save()" como na
+       * atualização da situação.
+       * Isso é necessário para que seja possível realizar a atualização parcial dos dados,
+       * ou seja, pode ser atualizado só um coluna ou todas.
+       * Docs: https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#simple-update-queries
+       */
+      await Tarefas.update(
+        {
+          titulo,
+          concluida,
+        },
+        {
+          where: {
+            id: tarefaId,
+          },
+        },
+      );
+
+      await tarefa.reload();
+
+      res.status(200).json(tarefa);
     } catch (error) {
       console.warn(error);
       res.status(500).send();

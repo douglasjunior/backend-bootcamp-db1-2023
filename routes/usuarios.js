@@ -33,15 +33,7 @@ router.post(
     try {
       const { nome, email, senha } = req.body;
 
-      const result = await Usuarios.create({
-        nome,
-        email,
-        senha,
-      });
-
-      const usuario = await Usuarios.findByPk(result.get('id'));
-
-      res.status(201).json(usuario);
+      // TODO: implementar aqui
     } catch (error) {
       console.warn(error);
       if (erroEmailDuplicado(error)) {
@@ -67,31 +59,7 @@ router.post(
     try {
       const { email, senha } = req.body;
 
-      const usuario = await Usuarios.unscoped().findOne({
-        where: {
-          email,
-        },
-      });
-
-      if (!usuario) {
-        res.status(401).send();
-        return;
-      }
-
-      if (!compararSenha(senha, usuario.get('senha'))) {
-        res.status(401).send();
-        return;
-      }
-
-      const usuarioRetorno = usuario.toJSON();
-      delete usuarioRetorno.senha;
-
-      const token = gerarTokenUsuario(usuarioRetorno);
-
-      res.status(200).json({
-        usuario: usuarioRetorno,
-        token,
-      });
+      // TODO: implementar aqui
     } catch (error) {
       console.warn(error);
       res.status(500).send();

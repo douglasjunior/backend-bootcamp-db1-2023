@@ -51,16 +51,7 @@ const Tarefas = sequelize.define(
  * Docs: https://sequelize.org/docs/v6/core-concepts/assocs/
  */
 Tarefas.belongsTo(Usuarios, {
-  // tabela associada
-  as: 'usuario',
-  // chave primária da tabela associada
-  targetKey: 'id',
-  // chave estrangeira
-  foreignKey: 'usuario_id',
-  // Configura o que deve ser feito quando uma tarefa ou usuário for excluído.
-  // Docs: https://sequelize.org/docs/v6/core-concepts/assocs/#ondelete-and-onupdate
-  onDelete: 'NO ACTION',
-  onUpdate: 'NO ACTION',
+  // TODO: implementar aqui
 });
 
 module.exports = Tarefas;

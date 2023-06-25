@@ -26,15 +26,7 @@ router.post(
 
       const { titulo, concluida } = body;
 
-      const result = await Tarefas.create({
-        titulo,
-        concluida,
-        usuario_id: usuarioLogado.id,
-      });
-
-      const tarefa = await Tarefas.findByPk(result.get('id'));
-
-      res.status(201).json(tarefa);
+      // TODO: implementar aqui
     } catch (error) {
       console.warn(error);
       res.status(500).send();
@@ -52,13 +44,7 @@ router.get(
     try {
       const { usuarioLogado } = req;
 
-      const result = await Tarefas.findAll({
-        where: {
-          usuario_id: usuarioLogado.id,
-        },
-      });
-
-      res.status(200).json(result);
+      // TODO: implementar aqui
     } catch (error) {
       console.warn(error);
       res.status(500).send();
@@ -78,19 +64,7 @@ router.get(
 
       const { tarefaId } = params;
 
-      const result = await Tarefas.findOne({
-        where: {
-          id: tarefaId,
-          usuario_id: usuarioLogado.id,
-        },
-      });
-
-      if (!result) {
-        res.status(404).send('Tarefa não encontrada');
-        return;
-      }
-
-      res.status(200).json(result);
+      // TODO: implementar aqui
     } catch (error) {
       console.warn(error);
       res.status(500).send();
@@ -144,18 +118,7 @@ router.put(
 
       const { tarefaId } = params;
 
-      const result = await atualizaSituacaoTarefa(
-        usuarioLogado.id,
-        tarefaId,
-        true,
-      );
-
-      if (!result) {
-        res.status(404).send('Tarefa não encontrada');
-        return;
-      }
-
-      res.status(200).json(result);
+      // TODO: implementar aqui
     } catch (error) {
       console.warn(error);
       res.status(500).send();
@@ -175,18 +138,7 @@ router.put(
 
       const { tarefaId } = params;
 
-      const result = await atualizaSituacaoTarefa(
-        usuarioLogado.id,
-        tarefaId,
-        false,
-      );
-
-      if (!result) {
-        res.status(404).send('Tarefa não encontrada');
-        return;
-      }
-
-      res.status(200).json(result);
+      // TODO: implementar aqui
     } catch (error) {
       console.warn(error);
       res.status(500).send();
@@ -212,40 +164,7 @@ router.patch(
       const { tarefaId } = params;
       const { titulo, concluida } = body;
 
-      const tarefa = await Tarefas.findOne({
-        where: {
-          id: tarefaId,
-          usuario_id: usuarioLogado.id,
-        },
-      });
-
-      if (!tarefa) {
-        res.status(404).send('Tarefa não encontrada');
-        return;
-      }
-
-      /**
-       * Realiza o update da tarefa direto no banco de dados e não via "save()" como na
-       * atualização da situação.
-       * Isso é necessário para que seja possível realizar a atualização parcial dos dados,
-       * ou seja, pode ser atualizado só um coluna ou todas.
-       * Docs: https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#simple-update-queries
-       */
-      await Tarefas.update(
-        {
-          titulo,
-          concluida,
-        },
-        {
-          where: {
-            id: tarefaId,
-          },
-        },
-      );
-
-      await tarefa.reload();
-
-      res.status(200).json(tarefa);
+      // TODO: implementar aqui
     } catch (error) {
       console.warn(error);
       res.status(500).send();

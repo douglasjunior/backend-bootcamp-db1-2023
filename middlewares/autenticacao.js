@@ -36,16 +36,7 @@ const middlewareAutenticacao = async (request, response, next) => {
   try {
     const payload = validarTokenUsuario(token);
 
-    const usuarioId = payload.id;
-
-    const usuario = await Usuarios.findByPk(usuarioId);
-
-    if (!usuario) {
-      response.status(401).send('Usuário não encontrado.');
-      return;
-    }
-
-    request.usuarioLogado = usuario.toJSON();
+    // TODO: implementar aqui
 
     next();
   } catch (error) {

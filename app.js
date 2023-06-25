@@ -2,6 +2,7 @@ const createError = require('http-errors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors');
 
 const indexRouter = require('./routes/index');
 const usuariosRouter = require('./routes/usuarios');
@@ -9,6 +10,14 @@ const tarefasRouter = require('./routes/tarefas');
 
 const app = express();
 
+app.use(cors({
+  origin: [
+    /.*.douglasjunior.xyz$/,
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+  ],
+  maxAge: 3600,
+}));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

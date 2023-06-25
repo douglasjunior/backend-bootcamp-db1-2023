@@ -10,14 +10,19 @@ const tarefasRouter = require('./routes/tarefas');
 
 const app = express();
 
+// Configura o CORS para permitir requests quando o backend
+// está rodando em um endereço diferente do frontend
+// Docs: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/CORS
 app.use(cors({
   origin: [
+    // Libera o servidor na núvem
     /.*.douglasjunior.xyz$/,
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
+    // Libera acesso local
+    /http:\/\/(localhost|127.0.0.1)(:\d+){0,1}$/,
   ],
   maxAge: 3600,
 }));
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

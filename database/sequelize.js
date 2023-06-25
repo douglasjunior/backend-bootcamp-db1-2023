@@ -17,8 +17,9 @@ const sequelize = new Sequelize(
     host: DATABASE_HOST,
     port: DATABASE_PORT,
     define: {
-      // ativa os timestamps e configura para ser criado com
-      // underline entre as palavras
+      // Ativa os timestamps e configura para ser criado com
+      // underline entre as palavras.
+      // Docs: https://sequelize.org/docs/v6/core-concepts/model-basics/#timestamps
       timestamps: true,
       underscored: true,
     },

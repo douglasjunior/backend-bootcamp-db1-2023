@@ -9,7 +9,14 @@
 const path = require('path');
 const dotenv = require('dotenv').config;
 
-if (process.env.NODE_ENV !== 'production') {
+const isProduction = process.env.NODE_ENV === 'production';
+
+if (!isProduction) {
+  /**
+   * Carrega as variáveis de ambiente do arquivo "dev.env".
+   * Porém o carregamento é feito apenas quando o projeto está rodando
+   * localmente em modo de desenvolvimento.
+   */
   dotenv({
     path: path.resolve(__dirname, '../dev.env'),
   });
@@ -24,7 +31,6 @@ const sequelize = require('../database/sequelize');
 /**
  * Normalize a port into a number, string, or false.
  */
-
 function normalizePort(val) {
   const portNumber = parseInt(val, 10);
 
@@ -44,20 +50,17 @@ function normalizePort(val) {
 /**
  * Get port from environment and store in Express.
  */
-
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
-
 const server = http.createServer(app);
 
 /**
  * Event listener for HTTP server "error" event.
  */
-
 function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
@@ -85,7 +88,6 @@ function onError(error) {
 /**
  * Event listener for HTTP server "listening" event.
  */
-
 function onListening() {
   const addr = server.address();
   const bind = typeof addr === 'string'
@@ -96,7 +98,10 @@ function onListening() {
   sequelize.authenticate()
     .then(() => {
       console.warn('Conectado com sucesso ao banco e dados!');
-      return sequelize.sync();
+      // Após conectar na base de dados, chama o "sync" para criar as tabelas
+      // caso ainda não existam.
+      // Docs: https://sequelize.org/docs/v6/core-concepts/model-basics/#model-synchronization
+      return sequelize.sync({ alter: !isProduction });
     })
     .catch((error) => {
       console.warn('Erro ao conectar ao banco e dados:', error);

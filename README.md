@@ -16,6 +16,39 @@
     npm run dev
     ```
 
+## Rotas públicas
+
+### Cadastro de usuários 
+
+> POST /usuarios
+>
+> Body:
+> ```json
+> {
+>   "nome": "Fulano da Silva",
+>   "email": "fulano@email.com",
+>   "senha": "12345678"
+> }
+>
+
+### Login de usuários 
+
+> POST /usuarios/login
+>
+> Body:
+> ```json
+> {
+>   "email": "fulano@email.com",
+>   "senha": "12345678"
+> }
+>
+
+## Rotas autenticadas
+
+Todas as rotas autenticadas exigem que o `token jwt` seja passado no cabeçalho (header) chamado `Authorization`.
+
+EM BREVE ....
+
 -----
 
 Professor: Douglas Nassif Roma Junior

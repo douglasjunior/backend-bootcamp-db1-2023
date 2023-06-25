@@ -10,13 +10,7 @@
 			"name": "Cadastrar usuário",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "token",
-						"value": "meu-token",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"nome\": \"Douglas Junior\",\r\n    \"email\": \"nassifrroma@gmail.com\",\r\n    \"senha\": \"senha123\"\r\n}",

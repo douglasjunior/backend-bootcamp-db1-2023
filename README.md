@@ -10,7 +10,7 @@
     ```
     npm install
     ```
-1. Configure as variáveis de ambiente no arquivo `env.dev`
+1. Configure as variáveis de ambiente no arquivo `dev.env`
     > Você precisa estar com o `MySQL` rodando e com um banco de dados já criado.
     > 
     > As tabelas serão criadas automaticamente pelo `Sequelize`.

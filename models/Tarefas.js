@@ -51,7 +51,11 @@ const Tarefas = sequelize.define(
  * Docs: https://sequelize.org/docs/v6/core-concepts/assocs/
  */
 Tarefas.belongsTo(Usuarios, {
-  // TODO: implementar aqui
+  as: 'usuarios',
+  targetKey: 'id',
+  foreingKey: 'usuario_id',
+  onDelete: 'NO ACTION',
+  onUpdate: 'NO ACTION',
 });
 
 module.exports = Tarefas;

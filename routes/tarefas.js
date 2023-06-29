@@ -11,6 +11,7 @@ const router = express.Router();
 
 /**
  * Cadastro de tarefas para o usuário logado
+ * POST /tarefas
  */
 router.post(
   '/',
@@ -26,7 +27,13 @@ router.post(
 
       const { titulo, concluida } = body;
 
-      // TODO: implementar aqui
+      const tarefa = await Tarefas.create({
+        titulo,
+        concluida,
+        usuario_id: usuarioLogado.id,
+      });
+
+      res.status(201).json(tarefa);
     } catch (error) {
       console.warn(error);
       res.status(500).send();

@@ -53,7 +53,7 @@ const Tarefas = sequelize.define(
 Tarefas.belongsTo(Usuarios, {
   as: 'usuarios',
   targetKey: 'id',
-  foreingKey: 'usuario_id',
+  foreignKey: 'usuario_id',
   onDelete: 'NO ACTION',
   onUpdate: 'NO ACTION',
 });

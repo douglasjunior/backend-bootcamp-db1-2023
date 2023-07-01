@@ -253,4 +253,36 @@ router.patch(
   },
 );
 
+/**
+ * Rota de exclusão de tarefas
+ * DELETE /tarefas/1
+ */
+router.delete(
+  '/:tarefaId',
+  middlewareAutenticacao,
+  async (req, res) => {
+    try {
+      const { usuarioLogado, params } = req;
+      const { tarefaId } = params;
+
+      const result = await Tarefas.destroy({
+        where: {
+          id: tarefaId,
+          usuario_id: usuarioLogado.id,
+        },
+      });
+
+      if (!result) {
+        res.status(404).send('Tarefa não encontrada');
+        return;
+      }
+
+      res.status(204).send();
+    } catch (error) {
+      console.warn(error);
+      res.status(500).send();
+    }
+  },
+);
+
 module.exports = router;

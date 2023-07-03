@@ -15,12 +15,14 @@ function erroEmailDuplicado(error) {
   }
 
   return error.errors.find((databaseError) => (
-    databaseError.type === 'unique violation' && databaseError.path === 'email'
+    databaseError.type === 'unique violation'
+    && databaseError.path === 'usuario_email_unico'
   ));
 }
 
 /**
  * Cadastro de usuários
+ * /usuarios
  */
 router.post(
   '/',
@@ -33,13 +35,13 @@ router.post(
     try {
       const { nome, email, senha } = req.body;
 
-      const result = await Usuarios.create({
+      const resultado = await Usuarios.create({
         nome,
         email,
         senha,
       });
 
-      const usuario = await Usuarios.findByPk(result.get('id'));
+      const usuario = await Usuarios.findByPk(resultado.get('id'));
 
       res.status(201).json(usuario);
     } catch (error) {
@@ -55,6 +57,7 @@ router.post(
 
 /**
  * Login de usuários
+ * /usuarios/login
  */
 router.post(
   '/login',
@@ -74,23 +77,23 @@ router.post(
       });
 
       if (!usuario) {
-        res.status(401).send();
+        res.status(401).send('Credenciais inválidas');
         return;
       }
 
       if (!compararSenha(senha, usuario.get('senha'))) {
-        res.status(401).send();
+        res.status(401).send('Credenciais inválidas');
         return;
       }
 
-      const usuarioRetorno = usuario.toJSON();
-      delete usuarioRetorno.senha;
+      const usuarioJson = usuario.toJSON();
+      delete usuarioJson.senha;
 
-      const token = gerarTokenUsuario(usuarioRetorno);
+      const token = gerarTokenUsuario(usuarioJson);
 
       res.status(200).json({
-        usuario: usuarioRetorno,
         token,
+        usuario: usuarioJson,
       });
     } catch (error) {
       console.warn(error);

@@ -3,8 +3,14 @@ const { checkSchema } = require('express-validator');
 const validadorCadastroTarefa = checkSchema(
   {
     titulo: {
+      notEmpty: {
+        errorMessage: 'O título é obrigatório',
+      },
       isLength: {
-        options: { min: 1, max: 1000 },
+        options: {
+          min: 1,
+          max: 1000,
+        },
         errorMessage: 'O título deve ter no mínimo 1 e no máximo 1000 caracteres',
       },
       isString: {
@@ -13,7 +19,7 @@ const validadorCadastroTarefa = checkSchema(
     },
     concluida: {
       isBoolean: {
-        errorMessage: 'A propriedade concluida deve ser um boolean',
+        errorMessage: 'Valor precisa ser boolean',
       },
       optional: true,
     },
@@ -25,17 +31,23 @@ const validadorAtualizacaoTarefa = checkSchema(
   {
     titulo: {
       optional: true,
-      isString: {
-        errorMessage: 'O título deve ser uma string',
+      notEmpty: {
+        errorMessage: 'O título é obrigatório',
       },
       isLength: {
-        options: { min: 1, max: 1000 },
+        options: {
+          min: 1,
+          max: 1000,
+        },
         errorMessage: 'O título deve ter no mínimo 1 e no máximo 1000 caracteres',
+      },
+      isString: {
+        errorMessage: 'O título deve ser uma string',
       },
     },
     concluida: {
       isBoolean: {
-        errorMessage: 'A propriedade concluida deve ser um boolean',
+        errorMessage: 'Valor precisa ser boolean',
       },
       optional: true,
     },

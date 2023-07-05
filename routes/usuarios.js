@@ -45,7 +45,7 @@ router.post(
     } catch (error) {
       console.warn(error);
       if (erroEmailDuplicado(error)) {
-        res.status(402).send('E-mail já cadastrado!');
+        res.status(422).send('E-mail já cadastrado!');
         return;
       }
       res.status(500).send();

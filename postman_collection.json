@@ -21,14 +21,16 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/usuarios/",
+					"raw": "https://backend.bootcamp.douglasjunior.xyz/usuarios",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"backend",
+						"bootcamp",
+						"douglasjunior",
+						"xyz"
 					],
-					"port": "3000",
 					"path": [
-						"usuarios",
-						""
+						"usuarios"
 					]
 				}
 			},
@@ -63,11 +65,14 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/usuarios/login",
+					"raw": "https://backend.bootcamp.douglasjunior.xyz/usuarios/login",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"backend",
+						"bootcamp",
+						"douglasjunior",
+						"xyz"
 					],
-					"port": "3000",
 					"path": [
 						"usuarios",
 						"login"
@@ -101,11 +106,14 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/tarefas",
+					"raw": "https://backend.bootcamp.douglasjunior.xyz/tarefas",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"backend",
+						"bootcamp",
+						"douglasjunior",
+						"xyz"
 					],
-					"port": "3000",
 					"path": [
 						"tarefas"
 					]
@@ -129,11 +137,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/tarefas",
+					"raw": "https://backend.bootcamp.douglasjunior.xyz/tarefas",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"backend",
+						"bootcamp",
+						"douglasjunior",
+						"xyz"
 					],
-					"port": "3000",
 					"path": [
 						"tarefas"
 					]
@@ -157,11 +168,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/tarefas/1",
+					"raw": "https://backend.bootcamp.douglasjunior.xyz/tarefas/1",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"backend",
+						"bootcamp",
+						"douglasjunior",
+						"xyz"
 					],
-					"port": "3000",
 					"path": [
 						"tarefas",
 						"1"
@@ -186,11 +200,14 @@
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/tarefas/1/concluida",
+					"raw": "https://backend.bootcamp.douglasjunior.xyz/tarefas/1/concluida",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"backend",
+						"bootcamp",
+						"douglasjunior",
+						"xyz"
 					],
-					"port": "3000",
 					"path": [
 						"tarefas",
 						"1",
@@ -216,11 +233,14 @@
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/tarefas/1/pendente",
+					"raw": "https://backend.bootcamp.douglasjunior.xyz/tarefas/1/pendente",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"backend",
+						"bootcamp",
+						"douglasjunior",
+						"xyz"
 					],
-					"port": "3000",
 					"path": [
 						"tarefas",
 						"1",
@@ -255,11 +275,46 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/tarefas/1",
+					"raw": "https://backend.bootcamp.douglasjunior.xyz/tarefas/1",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"backend",
+						"bootcamp",
+						"douglasjunior",
+						"xyz"
 					],
-					"port": "3000",
+					"path": [
+						"tarefas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remoção de tarefas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://backend.bootcamp.douglasjunior.xyz/tarefas/1",
+					"protocol": "https",
+					"host": [
+						"backend",
+						"bootcamp",
+						"douglasjunior",
+						"xyz"
+					],
 					"path": [
 						"tarefas",
 						"1"
@@ -274,11 +329,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/healthcheck",
+					"raw": "https://backend.bootcamp.douglasjunior.xyz/healthcheck",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"backend",
+						"bootcamp",
+						"douglasjunior",
+						"xyz"
 					],
-					"port": "3000",
 					"path": [
 						"healthcheck"
 					]

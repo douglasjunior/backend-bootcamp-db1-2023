@@ -13,6 +13,9 @@ const validadorLogin = checkSchema(
       notEmpty: {
         errorMessage: 'O e-mail é requerido',
       },
+      isString: {
+        errorMessage: 'O email deve ser uma string',
+      },
     },
     senha: {
       isLength: {
@@ -21,6 +24,9 @@ const validadorLogin = checkSchema(
       },
       notEmpty: {
         errorMessage: 'A senha é requerida',
+      },
+      isString: {
+        errorMessage: 'A senha deve ser uma string',
       },
     },
   },
@@ -37,6 +43,9 @@ const validadorCadastroUsuario = checkSchema(
       notEmpty: {
         errorMessage: 'O nome é requerido',
       },
+      isString: {
+        errorMessage: 'O nome deve ser uma string',
+      },
     },
     email: {
       isEmail: {
@@ -49,6 +58,9 @@ const validadorCadastroUsuario = checkSchema(
       notEmpty: {
         errorMessage: 'O e-mail é requerido',
       },
+      isString: {
+        errorMessage: 'O email deve ser uma string',
+      },
     },
     senha: {
       isLength: {
@@ -57,6 +69,9 @@ const validadorCadastroUsuario = checkSchema(
       },
       notEmpty: {
         errorMessage: 'A senha é requerida',
+      },
+      isString: {
+        errorMessage: 'A senha deve ser uma string',
       },
     },
   },

@@ -15,7 +15,7 @@ function erroEmailDuplicado(error) {
   }
 
   return error.errors.find((databaseError) => (
-    databaseError.type === 'unique violation' && databaseError.path === 'email'
+    databaseError.type === 'unique violation' && databaseError.path === 'usuario_email_unico'
   ));
 }
 
